@@ -27,14 +27,14 @@ export default function Screen({
 }) {
   return (
     <motion.section
-      className="min-h-[100svh] flex flex-col items-center justify-center px-6 text-center"
+      className="min-h-svh flex flex-col items-center justify-center px-6 text-center"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.4 }}
     >
       <motion.div
-        className="glass-card rounded-3xl px-6 py-20 max-w-md w-full relative overflow-hidden"
+        className="rounded-3xl px-6 py-20 max-w-md w-full relative overflow-hidden"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
