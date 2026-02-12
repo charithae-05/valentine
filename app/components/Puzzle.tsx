@@ -22,13 +22,16 @@ export default function Puzzle({
   };
 
   const emojis = [
-    { icon: "🏋️", label: "gym" },
     { icon: "🍽️", label: "food" },
-    { icon: "🌧️", label: "rain" },
+    { icon: "🌈", label: "rainbow" },
+    { icon: "🏋️", label: "gym" },
+     { icon: "🛵", label: "bike rides" },
+    { icon: "📱", label: "messaging/calls" },
+    { icon: "🎬", label: "movies" },
   ];
 
   return (
-    <div className="flex gap-6 text-5xl mt-8 justify-center">
+    <div className="grid grid-cols-3 gap-4 text-5xl mt-8 max-w-xs mx-auto">
       {emojis.map(({ icon, label }) => (
         <motion.button
           key={icon}

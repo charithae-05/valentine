@@ -150,11 +150,11 @@ export default function Home() {
         {/* SCREEN 6 — Final */}
         {step === 6 && (
           <Screen key="screen-6">
-            <h2 className="text-hero gradient-text font-semibold mt-[-4vh]">
+            <h2 className="text-hero font-semibold mt-[-4vh]" style={{ color: '#1a1a1a' }}>
               Will you be my Valentine? ❤️
             </h2>
 
-            <p className="mt-4 text-subtle italic">
+            <p className="mt-4 text-subtle italic" style={{ color: '#2a2a2a', opacity: 1 }}>
               ಈ ವಾಲೆಂಟೈನ್ ನಿನ್ನ ಜೊತೆಗೆ ಕಳೆಯಬಹುದಾ?
             </p>
 

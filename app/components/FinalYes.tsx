@@ -121,6 +121,18 @@ export default function FinalYes() {
         >
           💕
         </motion.div>
+
+        {/* Replay button */}
+        <motion.button
+          onClick={() => window.location.reload()}
+          className="mt-8 text-sm opacity-60 hover:opacity-100 active:scale-95 transition-all duration-200"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 0.6 }}
+          transition={{ delay: 0.6 }}
+          whileHover={{ opacity: 1, scale: 1.05 }}
+        >
+          Replay from beginning ↺
+        </motion.button>
       </motion.div>
     );
   }
