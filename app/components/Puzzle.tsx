@@ -1,24 +1,76 @@
 "use client";
 
+import { useState } from "react";
+import { motion } from "framer-motion";
+
 export default function Puzzle({
   onDone,
 }: {
   onDone?: () => void;
 }) {
-  const handleClick = () => {
-    onDone?.();
+  const [shaking, setShaking] = useState<string | null>(null);
+
+  const handleClick = (icon: string) => {
+    // Only gym emoji is correct
+    if (icon === "🏋️") {
+      onDone?.();
+    } else {
+      // Shake the wrong answer
+      setShaking(icon);
+      setTimeout(() => setShaking(null), 500);
+    }
   };
 
+  const emojis = [
+    { icon: "🏋️", label: "gym" },
+    { icon: "🍽️", label: "food" },
+    { icon: "🌧️", label: "rain" },
+  ];
+
   return (
-    <div className="flex gap-8 text-4xl mt-6">
-      {["🏋️", "🍽️", "🌧️"].map((icon) => (
-        <button
+    <div className="flex gap-6 text-5xl mt-8 justify-center">
+      {emojis.map(({ icon, label }) => (
+        <motion.button
           key={icon}
-          onClick={handleClick}
-          className="transition-transform active:scale-90"
+          onClick={() => handleClick(icon)}
+          className="relative transition-all duration-200 hover:scale-110 active:scale-95"
+          animate={{
+            x: shaking === icon ? [0, -10, 10, -10, 10, 0] : 0,
+            rotate: shaking === icon ? [0, -5, 5, -5, 5, 0] : 0,
+          }}
+          transition={{ duration: 0.5 }}
+          whileHover={{ y: -8 }}
+          whileTap={{ scale: 0.9 }}
         >
-          {icon}
-        </button>
+          <motion.div
+            animate={{
+              y: [0, -10, 0],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              delay: label === "gym" ? 0 : label === "food" ? 0.3 : 0.6,
+            }}
+          >
+            {icon}
+          </motion.div>
+
+          {/* Hint glow for correct answer */}
+          {icon === "🏋️" && (
+            <motion.div
+              className="absolute inset-0 rounded-full blur-xl opacity-30"
+              style={{ background: "linear-gradient(135deg, #FFB5C2, #D4A5D9)" }}
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.2, 0.4, 0.2],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+              }}
+            />
+          )}
+        </motion.button>
       ))}
     </div>
   );
